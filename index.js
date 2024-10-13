@@ -1,22 +1,22 @@
+require('dotenv').config(); // Add this line at the very beginning
 const express = require("express");
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 3000;
-
+const port = process.env.PORT ||3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
 // Database connection
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root', // Your MySQL username
-  password: 'Database@0786', // Your MySQL password
-  database: 'data', // Your MySQL database name
+  user:'root',
+  host:'localhost',
+  password:'Database@0786',
+  database: 'data',
+// port: process.env.DB_PORT,
 });
 
 db.connect((err) => {
